@@ -1,0 +1,44 @@
+{extends file="../../templates/login.html"}
+{block name=content}
+
+<section>
+	<header>
+		<h2>Logowanie</h2>
+	</header>
+	<form action="{$app_root}/app/security/login.php" method="post">
+		<div class="fields">
+			<div class="field">
+				<label for="id_login">Login</label>
+				<input id="id_login" type="text" name="login" value="{$form['login']}" />
+			</div>
+			<div class="field">
+				<label for="id_pass">Hasło</label>
+				<input id="id_pass" type="password" name="pass" />
+			</div>
+		</div>
+		<ul class="actions">
+			<li><input type="submit" name="submit" id="submit" value="Zaloguj"></li>
+		</ul>
+	</form>	
+</section>
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if isset($messages)}
+	{if count($messages) > 0} 
+	<section>
+		<header>
+			<h3>Błędy</h3>
+		</header>
+		<div class="content">
+			<ol>
+			{foreach  $messages as $msg}
+			{strip}
+				<li>{$msg}</li>
+			{/strip}
+			{/foreach}
+			</ol>
+		</div>
+	</section>
+	{/if}
+{/if}
+
+{/block}
